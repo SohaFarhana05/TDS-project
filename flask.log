@@ -1,0 +1,10 @@
+TDS Virtual TA starting on port 8080
+Loaded 558 course content items
+Loaded 3383 discourse posts
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.29.139:8080
+Press CTRL+C to quit

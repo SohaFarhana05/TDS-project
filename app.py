@@ -9,6 +9,14 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# Add CORS headers to all responses
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
+
 class TDSVirtualTA:
     def __init__(self):
         self.course_content = self.load_course_content()
@@ -247,9 +255,21 @@ class TDSVirtualTA:
 # Initialize the TA
 ta = TDSVirtualTA()
 
-@app.route('/api/', methods=['POST'])
+@app.route('/api/', methods=['POST', 'GET'])
 def answer_question():
     """Main API endpoint to answer questions"""
+    if request.method == 'GET':
+        return jsonify({
+            "message": "TDS Virtual TA API Endpoint",
+            "usage": "Send POST request with JSON: {'question': 'your question'}",
+            "example": "curl -X POST [URL]/api/ -H 'Content-Type: application/json' -d '{\"question\": \"Should I use gpt-4o-mini or gpt-3.5-turbo?\"}'",
+            "status": "ready",
+            "data_loaded": {
+                "course_content": len(ta.course_content),
+                "discourse_posts": len(ta.discourse_data)
+            }
+        })
+    
     try:
         data = request.get_json()
         if not data:
@@ -343,8 +363,11 @@ def answer_question():
             "links": []
         }), 500
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        # Redirect POST requests to the API endpoint handler
+        return answer_question()
     return "Welcome to the TDS Virtual Teaching Assistant API! Use POST /api/ to ask questions."
 
 @app.route('/health')

@@ -38,29 +38,6 @@ POST /api/
 }
 ```
 
-## Local Development
-
-1. **Clone the repository**
-```bash
-git clone <your-repo-url>
-cd tds-project
-```
-
-2. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-3. **Add data files**
-Place `CourseContentData.jsonl` and `DicourseData.jsonl` in the project root.
-
-4. **Run the application**
-```bash
-python app.py
-```
-
-The API will be available at `http://localhost:8080/api/`
-
 ## Testing
 
 Test the API with curl:
@@ -72,20 +49,8 @@ curl -X POST http://localhost:8080/api/ \
 
 ## Deployment
 
-### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Vercel will automatically deploy on pushes to main branch
-3. Your API will be available at `https://your-app.vercel.app/api/`
+### Vercel - https://tds-project-git-main-soha-farhanas-projects.vercel.app
 
-### Railway
-1. Connect your GitHub repository to Railway
-2. Railway will automatically build and deploy
-3. Your API will be available at the provided Railway URL
-
-## Data Sources
-
-- **Course Content**: TDS Jan 2025 course materials from https://tds.s-anand.net/#/2025-01/
-- **Discourse Posts**: TDS forum discussions from Jan 1, 2025 - Apr 14, 2025
 
 ## Project Structure
 
@@ -100,7 +65,6 @@ tds-project/
 ```
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 # TDS-project
-# TDS-project
+

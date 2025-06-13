@@ -11,7 +11,9 @@
 ```
 tds-project/
 ├── app.py                  # Main Flask application
-├── requirements.txt        # Dependencies (Flask, requests, python-dotenv)
+├── requirements.txt        # Dependencies (Flask, requests, python-dotenv, gunicorn)
+├── Procfile               # Railway start command
+├── nixpacks.toml          # Railway build configuration
 ├── LICENSE                # MIT License
 ├── README.md              # Documentation
 ├── vercel.json            # Vercel deployment config
@@ -19,7 +21,9 @@ tds-project/
 ├── CourseContentData.jsonl # Course content (569KB)
 ├── DicourseData.jsonl     # Forum discussions (1.9MB)
 ├── test_api.py            # API testing script
-└── deploy.sh              # Deployment helper script
+├── deploy.sh              # Deployment helper script
+└── api/                   # Vercel API directory
+    └── index.py           # Vercel entry point
 ```
 
 ## 🌐 Deployment Options (Choose One)
@@ -43,15 +47,20 @@ tds-project/
    - Click "Deploy"
    - Your API will be live at `https://your-app.vercel.app/api/`
 
-### Option 2: Railway (Zero Config)
+### Option 2: Railway (Zero Config - Now Fixed)
 1. **Push to GitHub** (same as above)
 2. **Deploy on Railway**:
    - Go to https://railway.app
    - Sign in with GitHub
    - Click "Deploy from GitHub repo"
    - Select your `tds-project` repository
-   - Railway will auto-deploy
-   - Your API will be live at the provided Railway URL
+   - Railway will auto-deploy using the included `Procfile` and `nixpacks.toml`
+   - Your API will be live at the provided Railway URL (e.g., `https://your-app.railway.app/api/`)
+
+**Railway Configuration Files Included:**
+- `Procfile`: Tells Railway how to start the app with gunicorn
+- `nixpacks.toml`: Configures the build process
+- Updated `requirements.txt` with gunicorn for production
 
 ### Option 3: Render (Free Tier)
 1. **Push to GitHub** (same as above)
